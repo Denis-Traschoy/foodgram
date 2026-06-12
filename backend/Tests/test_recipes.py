@@ -5,6 +5,7 @@ from tags.models import Tag
 
 pytestmark = pytest.mark.django_db
 
+
 @pytest.fixture
 def tag():
     return Tag.objects.create(name='Завтрак', slug='breakfast')

@@ -11,7 +11,9 @@ class UserAdmin(BaseUserAdmin):
     ordering = ['id']
     fieldsets = (
         (None, {'fields': ('email', 'username', 'password')}),
-        ('Личная информация', {'fields': ('first_name', 'last_name', 'avatar')}),
+        ('Личная информация',
+         {'fields': ('first_name', 'last_name', 'avatar')}
+         ),
         ('Права', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
         ('Даты', {'fields': ('last_login', 'date_joined')}),
     )

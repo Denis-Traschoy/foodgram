@@ -3,6 +3,7 @@ from ingredients.models import Ingredient
 
 pytestmark = pytest.mark.django_db
 
+
 @pytest.fixture
 def ingredient():
     ing = Ingredient.objects.create(name='Капуста', measurement_unit='кг')

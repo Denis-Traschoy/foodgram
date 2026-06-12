@@ -25,7 +25,13 @@ class UserViewSet(viewsets.ModelViewSet):
         return UserSerializer
 
     def get_permissions(self):
-        if self.action in ('me', 'set_password', 'avatar', 'subscriptions', 'subscribe'):
+        if self.action in (
+            'me',
+            'set_password',
+            'avatar',
+            'subscriptions',
+            'subscribe'
+        ):
             return [IsAuthenticated()]
         if self.action == 'create':
             return [AllowAny()]
@@ -70,7 +76,11 @@ class UserViewSet(viewsets.ModelViewSet):
             'request': request,
             'recipes_limit': int(recipes_limit) if recipes_limit else None,
         }
-        serializer = UserWithRecipesSerializer(page, many=True, context=context)
+        serializer = UserWithRecipesSerializer(
+            page,
+            many=True,
+            context=context
+        )
         return self.get_paginated_response(serializer.data)
 
     @action(detail=True, methods=['post', 'delete'], url_path='subscribe')
@@ -94,7 +104,10 @@ class UserViewSet(viewsets.ModelViewSet):
                 author,
                 context=context,
             )
-            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+            return Response(
+                response_serializer.data,
+                status=status.HTTP_201_CREATED
+            )
 
         elif request.method == 'DELETE':
             subscription = get_object_or_404(

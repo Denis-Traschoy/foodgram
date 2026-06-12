@@ -26,13 +26,14 @@ def image_base64():
     img = Image.new('RGB', (1, 1), color='red')
     buffer = io.BytesIO()
     img.save(buffer, format='PNG')
-    return f'data:image/png;base64,{base64.b64encode(buffer.getvalue()).decode()}'
+    return f'data:image/png;base64,{
+        base64.b64encode(buffer.getvalue()).decode()}'
 
 
 @pytest.fixture
 def user(api_client):
     """Обычный пользователь."""
-    resp = api_client.post(
+    api_client.post(
         '/api/users/',
         {
             'email': 'test@example.com',
@@ -57,14 +58,15 @@ def auth_client(api_client, user):
         {'email': user.email, 'password': 'StrongPass123'},
         format='json',
     )
-    api_client.credentials(HTTP_AUTHORIZATION=f'Token {resp.data["auth_token"]}')
+    api_client.credentials(
+        HTTP_AUTHORIZATION=f'Token {resp.data["auth_token"]}')
     return api_client
 
 
 @pytest.fixture
 def another_user(api_client):
     """Второй пользователь для тестов подписок."""
-    resp = api_client.post(
+    api_client.post(
         '/api/users/',
         {
             'email': 'other@example.com',

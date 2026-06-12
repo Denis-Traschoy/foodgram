@@ -2,8 +2,7 @@
 exclude = 
     venv,
     migrations,
-    Tests,
     __pycache__,
     settings.py
-max-line-length = 100
+max-line-length = 80
 ignore = D, W503
