@@ -2,7 +2,7 @@
 exclude = 
     venv,
     migrations,
-    tests,
+    Tests,
     __pycache__,
     settings.py
 max-line-length = 100
