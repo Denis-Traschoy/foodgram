@@ -1,0 +1,9 @@
+[flake8]
+exclude = 
+    venv,
+    migrations,
+    tests,
+    __pycache__,
+    settings.py
+max-line-length = 100
+ignore = D, W503
