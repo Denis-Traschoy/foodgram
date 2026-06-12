@@ -1,4 +1,5 @@
 import base64
+import tempfile
 import io
 
 import pytest
@@ -6,6 +7,11 @@ from PIL import Image
 from rest_framework.test import APIClient
 
 from users.models import User
+
+
+@pytest.fixture(autouse=True)
+def override_media_root(settings):
+    settings.MEDIA_ROOT = tempfile.mkdtemp()
 
 
 @pytest.fixture
