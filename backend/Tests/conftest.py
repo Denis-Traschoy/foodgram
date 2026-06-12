@@ -22,12 +22,11 @@ def api_client():
 
 @pytest.fixture
 def image_base64():
-    """base64-строка картинки 1x1 пиксель."""
     img = Image.new('RGB', (1, 1), color='red')
     buffer = io.BytesIO()
     img.save(buffer, format='PNG')
-    return f'data:image/png;base64,{
-        base64.b64encode(buffer.getvalue()).decode()}'
+    encoded = base64.b64encode(buffer.getvalue()).decode()
+    return f'data:image/png;base64,{encoded}'
 
 
 @pytest.fixture
