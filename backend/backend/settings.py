@@ -1,5 +1,8 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -60,19 +63,28 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT', 5432)
+# тесты на постгри не работают, у меня локально дебаг тру, юзается лайт
+# на серве в энве фолс и там уже постгри
+# у воркфлоу тоже тру так что если что-то с базой будет не так
+# тесты уже там откажут работать
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('POSTGRES_DB'),
+            'USER': os.getenv('POSTGRES_USER'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': os.getenv('DB_PORT', '5432'),
+        }
+    }
 
 
 # Password validation
@@ -133,8 +145,8 @@ DJOSER = {
         'token_create': ['rest_framework.permissions.AllowAny'],
     },
     'SERIALIZERS': {
-        'user': 'users.serializers.UserSerializer',
-        'user_create': 'users.serializers.UserCreateSerializer',
+        'user': 'api.serializers.UserSerializer',
+        'user_create': 'api.serializers.UserCreateSerializer',
     },
 }
 
