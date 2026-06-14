@@ -3,7 +3,7 @@ import base64
 from django.core.files.base import ContentFile
 from rest_framework import serializers
 
-from api.serializers import RecipeMinifiedSerializer
+from api.serializers.serializers_recipes import RecipeMinifiedSerializer
 from users.models import Subscription, User
 
 

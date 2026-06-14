@@ -1,6 +1,8 @@
 from rest_framework import serializers
 
-from api.serializers import Base64ImageField, TagSerializer, UserSerializer
+from api.serializers.serializers_users import Base64ImageField, UserSerializer
+from api.serializers.serializers_tags import TagSerializer
+# если импортирую из инита то импорт не происходит
 from recipes.models import Favorite, Recipe, RecipeIngredient, ShoppingCart
 from tags.models import Tag
 
