@@ -1,14 +1,14 @@
 from .serializers_ingredients import IngredientSerializer
+from .serializers_jail import Base64ImageField, RecipeMinifiedSerializer
 from .serializers_recipes import (
     FavoriteSerializer, RecipeCreateSerializer,
     RecipeIngredientCreateSerializer, RecipeIngredientSerializer,
-    RecipeListSerializer, RecipeMinifiedSerializer, ShoppingCartSerializer,
+    RecipeListSerializer, ShoppingCartSerializer,
 )
 from .serializers_tags import TagSerializer
 from .serializers_users import (
-    AvatarSerializer, Base64ImageField, SetPasswordSerializer,
-    SubscriptionSerializer, UserCreateSerializer, UserSerializer,
-    UserWithRecipesSerializer,
+    AvatarSerializer, SetPasswordSerializer, SubscriptionSerializer,
+    UserCreateSerializer, UserSerializer, UserWithRecipesSerializer,
 )
 
 __all__ = [

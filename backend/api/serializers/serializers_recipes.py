@@ -1,7 +1,10 @@
 from rest_framework import serializers
 
-from api.serializers.serializers_users import Base64ImageField, UserSerializer
+from api.serializers.serializers_jail import (
+    Base64ImageField, RecipeMinifiedSerializer,
+)
 from api.serializers.serializers_tags import TagSerializer
+from api.serializers.serializers_users import UserSerializer
 # если импортирую из инита то импорт не происходит
 from recipes.models import Favorite, Recipe, RecipeIngredient, ShoppingCart
 from tags.models import Tag
@@ -134,13 +137,6 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return RecipeListSerializer(instance, context=self.context).data
-
-
-class RecipeMinifiedSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Recipe
-        fields = ['id', 'name', 'image', 'cooking_time']
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
