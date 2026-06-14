@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
-from serializers import IngredientSerializer
 
+from api.serializers import IngredientSerializer
 from ingredients.models import Ingredient
 
 

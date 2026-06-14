@@ -1,4 +1,5 @@
 import pytest
+from rest_framework.test import APIClient
 
 from ingredients.models import Ingredient
 from recipes.models import Recipe
@@ -199,7 +200,6 @@ class TestFavorite:
         assert resp.status_code == 204
 
     def test_unauthorized(self, recipe):
-        from rest_framework.test import APIClient
         client = APIClient()
         resp = client.post(f'/api/recipes/{recipe.id}/favorite/')
         assert resp.status_code == 401
