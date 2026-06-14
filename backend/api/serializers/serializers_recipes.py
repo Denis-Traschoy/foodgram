@@ -1,10 +1,8 @@
 from rest_framework import serializers
 
+from api.serializers import Base64ImageField, TagSerializer, UserSerializer
+from recipes.models import Favorite, Recipe, RecipeIngredient, ShoppingCart
 from tags.models import Tag
-from tags.serializers import TagSerializer
-from users.serializers import Base64ImageField, UserSerializer
-
-from .models import Favorite, Recipe, RecipeIngredient, ShoppingCart
 
 
 class RecipeIngredientSerializer(serializers.ModelSerializer):
@@ -26,7 +24,6 @@ class RecipeIngredientCreateSerializer(serializers.Serializer):
 
 
 class RecipeListSerializer(serializers.ModelSerializer):
-    """Вывод рецепта (список и детальный)."""
     tags = TagSerializer(many=True, read_only=True)
     author = UserSerializer(read_only=True)
     ingredients = RecipeIngredientSerializer(
@@ -67,7 +64,6 @@ class RecipeListSerializer(serializers.ModelSerializer):
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
-    """Создание рецепта."""
     tags = serializers.PrimaryKeyRelatedField(
         queryset=Tag.objects.all(),
         many=True,

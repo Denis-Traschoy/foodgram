@@ -1,0 +1,6 @@
+[tool.isort]
+profile = "django"
+line_length = 79
+known_first_party = ["api", "users", "recipes", "tags", "ingredients"]
+known_third_party = ["rest_framework", "djoser", "django", "reportlab", "PIL"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]

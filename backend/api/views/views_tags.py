@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 
-from .models import Tag
-from .serializers import TagSerializer
+from api.serializers import TagSerializer
+from tags.models import Tag
 
 
 class TagViewSet(viewsets.ReadOnlyModelViewSet):

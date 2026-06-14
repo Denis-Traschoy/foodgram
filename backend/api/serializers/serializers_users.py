@@ -3,13 +3,13 @@ import base64
 from django.core.files.base import ContentFile
 from rest_framework import serializers
 
-from .models import Subscription, User
+from api.serializers import RecipeMinifiedSerializer
+from users.models import Subscription, User
 
 
 class Base64ImageField(serializers.ImageField):
     def to_internal_value(self, data):
         if isinstance(data, str) and data.startswith('data:image'):
-            # Убираем заголовок data:image/png;base64,
             format, imgstr = data.split(';base64,')
             ext = format.split('/')[-1]
             data = ContentFile(base64.b64decode(imgstr), name=f'temp.{ext}')
@@ -97,7 +97,6 @@ class UserWithRecipesSerializer(UserSerializer):
         fields = UserSerializer.Meta.fields + ['recipes', 'recipes_count']
 
     def get_recipes(self, obj):
-        from recipes.serializers import RecipeMinifiedSerializer
         recipes = obj.recipes.all()
         limit = self.context.get('recipes_limit')
         if limit:

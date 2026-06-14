@@ -1,4 +1,5 @@
 import pytest
+
 from ingredients.models import Ingredient
 from recipes.models import Recipe
 from tags.models import Tag

@@ -1,6 +1,6 @@
 import base64
-import tempfile
 import io
+import tempfile
 
 import pytest
 from PIL import Image

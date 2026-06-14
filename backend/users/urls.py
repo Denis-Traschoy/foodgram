@@ -1,5 +1,5 @@
-from djoser.views import TokenCreateView, TokenDestroyView
 from django.urls import path
+from djoser.views import TokenCreateView, TokenDestroyView
 
 urlpatterns = [
     path('auth/token/login/', TokenCreateView.as_view(), name='login'),

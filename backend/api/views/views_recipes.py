@@ -1,11 +1,11 @@
 import csv
 import io
 
+from django.db.models import Sum
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
-from django.db.models import Sum
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -13,13 +13,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.permissions import IsAuthorOrReadOnly
-from .models import Favorite, Recipe, RecipeIngredient, ShoppingCart
-from .serializers import (
-    FavoriteSerializer,
-    RecipeCreateSerializer,
-    RecipeListSerializer,
+from api.serializers import (
+    FavoriteSerializer, RecipeCreateSerializer, RecipeListSerializer,
     ShoppingCartSerializer,
 )
+from recipes.models import Favorite, Recipe, RecipeIngredient, ShoppingCart
 
 BASE62_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 PAGE_WIDTH, PAGE_HEIGHT = A4
