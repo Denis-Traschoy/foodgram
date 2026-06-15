@@ -25,10 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if not request or not request.user.is_authenticated:
             return False
-        return Subscription.objects.filter(
-            user=request.user,
-            author=obj,
-        ).exists()
+        return request.user.subscriber.filter(author=obj).exists()
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -107,7 +104,7 @@ class SubscriptionSerializer(serializers.ModelSerializer):
         author = data.get('author')
         if user == author:
             raise serializers.ValidationError('Нельзя подписаться на себя.')
-        if Subscription.objects.filter(user=user, author=author).exists():
+        if user.subscriber.filter(author=author).exists():
             raise serializers.ValidationError(
                 'Вы уже подписаны на этого пользователя.'
             )

@@ -1,15 +1,17 @@
 from django.db import models
 
+SLUG_LENGHT = 32
+
 
 class Tag(models.Model):
     name = models.CharField(
         'Название',
-        max_length=32,
+        max_length=SLUG_LENGHT,
         unique=True,
     )
     slug = models.SlugField(
         'Слаг',
-        max_length=32,
+        max_length=SLUG_LENGHT,
         unique=True,
         blank=True,
         null=True,

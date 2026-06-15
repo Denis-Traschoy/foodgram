@@ -20,6 +20,7 @@ from api.serializers import (
 from recipes.models import Favorite, Recipe, RecipeIngredient, ShoppingCart
 
 BASE62_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+BASE62_NUMBER = 62
 PAGE_WIDTH, PAGE_HEIGHT = A4
 MARGIN_LEFT = 50
 MARGIN_TOP = 50
@@ -269,8 +270,12 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def _encode_id(self, pk):
         result = ''
         while pk > 0:
-            result = BASE62_CHARS[pk % 62] + result
-            pk //= 62
+            # я понимаю что мэджик намбер вреден, ибо будет мешать переписать
+            # код позже, да и можно запутаться в числах, но в BASE62 всегда
+            # будет по 62 символа, в этом же и смысл,
+            # разве тут нужна константа?
+            result = BASE62_CHARS[pk % BASE62_NUMBER] + result
+            pk //= BASE62_NUMBER
         return result or '0'
 
 

@@ -1,14 +1,17 @@
 from django.db import models
 
+NAME_LENGHT = 128
+MEANSUREMENT_LENGHT = 64
+
 
 class Ingredient(models.Model):
     name = models.CharField(
         'Название',
-        max_length=128,
+        max_length=NAME_LENGHT,
     )
     measurement_unit = models.CharField(
         'Единица измерения',
-        max_length=64,
+        max_length=MEANSUREMENT_LENGHT,
     )
 
     class Meta:
