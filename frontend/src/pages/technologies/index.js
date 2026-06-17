@@ -1,5 +1,4 @@
-import { Title, Container, Main } from '../../components'
-import styles from './styles.module.css'
+import { Main } from '../../components'
 import MetaTags from 'react-meta-tags'
 
 const Technologies = () => {
@@ -11,33 +10,21 @@ const Technologies = () => {
       <meta property="og:title" content="О проекте" />
     </MetaTags>
     
-    <Container>
-      <h1 className={styles.title}>Технологии</h1>
-      <div className={styles.content}>
-        <div>
-          <h2 className={styles.subtitle}>Технологии, которые применены в этом проекте:</h2>
-          <div className={styles.text}>
-            <ul className={styles.textItem}>
-              <li className={styles.textItem}>
-                Python
-              </li>
-              <li className={styles.textItem}>
-                Django
-              </li>
-              <li className={styles.textItem}>
-                Django REST Framework
-              </li>
-              <li className={styles.textItem}>
-                Djoser
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-    </Container>
+    <iframe
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        border: 'none',
+      }}
+      src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0"
+      title="YouTube video"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
   </Main>
 }
 
 export default Technologies
-
